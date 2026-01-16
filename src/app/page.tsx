@@ -67,7 +67,7 @@ export default function Home() {
       {/*second section*/}
       <section className="bg-white px-6 md:px-[100px] py-16 md:py-24">
         <div className="max-w-6xl mx-auto flex flex-col gap-10">
-          <RsvpForm formId="first" variant="dark" />
+          <RsvpForm formId="first" />
           <div className="space-y-6 text-[18px] md:text-[27px] font-medium leading-relaxed">
             <p>
               AI is accelerating change across every operational layer. Roles
@@ -336,7 +336,7 @@ export default function Home() {
             </div>
 
             <div className="mt-8 flex items-center">
-              <RsvpForm formId="Second" variant="dark" />
+              <RsvpForm formId="Second" />
             </div>
           </div>
 
@@ -413,7 +413,7 @@ export default function Home() {
               Space is limited.
             </h2>
             <div className="mt-6">
-              <RsvpForm formId="last" variant="light" />
+              <RsvpForm formId="last" />
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between w-full gap-4">
