@@ -1,0 +1,64 @@
+# Executive Roundtable: The Skills That Matter Next
+
+A High-Performance Event Landing Page for the AI Era
+This project is a high-fidelity, responsive landing page built for an exclusive executive event. It bridges the gap between sophisticated design and functional engineering, utilizing Next.js 15, Server Actions, and Airtable for a seamless RSVP experience.
+
+# The Objective
+
+The goal was to create an invite-only feel for a leadership roundtable. Beyond the UI, the technical focus was on performance, accessibility, and a "zero-client-side-logic" approach to form handling, ensuring data security and speed.
+
+# The Tech Stack
+
+Framework: Next.js (App Router)
+
+Styling: Tailwind CSS (Customized for high-scale typography and fluid spacing)
+
+Database/Backend: Airtable (Managed via Server Actions)
+
+Deployment: Vercel
+
+# Key Features
+
+1. Modern Server-Side Architecture
+   I utilized Next.js Server Actions to handle RSVP submissions. This eliminates the need for a traditional API route, reduces the JavaScript bundle size on the client, and keeps the Airtable credentials securely on the server.
+
+2. "Mobile-First" Responsive Design
+   Every section—from the Hero background focus to the Agenda cards—was designed to be fluid.
+
+Agenda Section: Uses a CSS Grid that elegantly stacks from 3 columns on desktop to a single column on mobile.
+
+Checkmate Section: Implements flex-col-reverse to ensure high-impact imagery appears at the top on small screens while maintaining a side-by-side layout on desktop.
+
+3. Interactive UX with Feedback
+   Using the useActionState and useFormStatus hooks, the RSVP form provides real-time feedback. Users see a "Sending..." state during submission and a clear success/error message upon completion without the page refreshing.
+
+# Local Setup
+
+## Clone the repo:
+
+    Bash
+
+    git clone https://github.com/your-username/your-repo-name.git
+
+## Install dependencies:
+
+    Bash
+
+    npm install
+
+## Configure Environment Variables: Create a .env.local file and add:
+
+    Code snippet
+
+    AIRTABLE_PAT=your_token
+    AIRTABLE_BASE_ID=your_base_id
+    AIRTABLE_TABLE_NAME=your_table_name
+
+## Run the development server:
+
+    Bash
+    npm run dev
+
+# Implementation Notes
+
+During development, I prioritized Layout Stability. By avoiding hardcoded pixel heights and using Flexbox/Grid alignment, I ensured that the text content never overlaps, even if the user has a different default font size or a narrower mobile screen.

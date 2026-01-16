@@ -5,10 +5,22 @@
   --foreground: #171717;
 }
 
+@layer base {
+  html { scroll-behavior: smooth; }
+}
+
+@media (1440px <= width < 1536px) {
+  .figma-desktop { max-width: 1440px; margin: 0 auto; }
+}
+
+.bg-mobile { background-position: 0px -48px; background-size: 150px 46px; }
+.bg-desktop { background-position: 21px 6219px; background-size: 517px 611px; }
+
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-satoshi);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -22,5 +34,6 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-feature-settings: "rlig" 1, "calt" 1;
 }
