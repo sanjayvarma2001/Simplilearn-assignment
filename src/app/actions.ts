@@ -1,33 +1,37 @@
 'use server';
 
-import { revalidatePath } from 'next/cache';
 import Airtable from 'airtable';
 
-const base = new Airtable({ apiKey: process.env.AIRTABLE_PAT })
-  .base(process.env.AIRTABLE_BASE_ID!);
+const base = new Airtable({ apiKey: process.env.AIRTABLE_PAT }).base(
+  process.env.AIRTABLE_BASE_ID || ''
+);
 
-export async function submitRsvp(formData: FormData) {
+export async function submitRsvp(prevState: any, formData: FormData) {
   const email = formData.get('email') as string;
-  const formId = formData.get('formId') as string || 'unknown';
+  const formId = formData.get('formId') as string;
 
-  if (!email || !email.includes('@')) {
-    return { error: 'Invalid email' };
+  if (!email) {
+    return { error: "Email is required.", success: false };
   }
 
   try {
-    await base(process.env.AIRTABLE_TABLE_NAME!).create([{
-      fields: {
-        Email: email,
-        FormId: formId,
-        Timestamp: new Date().toISOString(),
-        Status: 'Submitted',
-      },
-    }]);
+    await base(process.env.AIRTABLE_TABLE_NAME || 'RSVPs').create([
+      {
+        fields: {
+          "Email": email,
+          "FormId": formId,
+          "Status": "Confirmed",
+          "Date": new Date().toISOString()
+        }
+      }
+    ]);
 
-    revalidatePath('/');
-    return { success: true };
-  } catch (error) {
-    console.error('Airtable error:', error);
-    return { error: 'Failed to submit' };
+    return { success: true, error: null };
+  } catch (error: any) {
+    console.error("Airtable Error:", error);
+    return { 
+      error: "Something went wrong. Please try again.", 
+      success: false 
+    };
   }
 }
